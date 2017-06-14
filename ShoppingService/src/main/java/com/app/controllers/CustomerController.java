@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.models.Customers;
+import com.app.services.CartService;
 import com.app.services.CustomerService;
 
 @RestController
@@ -18,6 +19,9 @@ public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 	
+	@Autowired
+	CartService cartService;
+	
 	
 	@RequestMapping(value = "/customers", method = RequestMethod.GET)
 	public List<Customers> getAllCustomers() {
@@ -25,11 +29,17 @@ public class CustomerController {
 		return customerService.getAllCustomers();
 	}
 	
-	@RequestMapping(value = "/customers/{cid}", method = RequestMethod.GET)
-	public Customers getCustomer(@PathVariable int cid) {
-		
+	@RequestMapping(value = "/customers/{username}", method = RequestMethod.GET)
+	public Customers getCustomer(@PathVariable String username) {
+		Customers c = customerService.getCustomerByName(username);
+		int cid = c.getCid();
 		return customerService.getCustomer(cid);
 	}
+	
+/*	@RequestMapping(value = "/customers/{userName}", method = RequestMethod.PUT)
+	public void updateCustomer(@RequestBody Customers customers){
+		customerService.updateCustomer(customers);
+	}*/
 
 	@RequestMapping(value = "/customers", method = RequestMethod.POST)
 	public void addCustomer(@RequestBody Customers customer) {

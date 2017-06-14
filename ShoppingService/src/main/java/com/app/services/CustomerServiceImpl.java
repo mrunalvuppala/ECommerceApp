@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.models.Cart;
 import com.app.models.Customers;
 import com.app.repositories.CustomerRepository;
 
@@ -25,6 +26,10 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	@Override
+	public Customers getCustomerByName(String username){
+		return customerRepository.findByuserName(username);
+	}
+	@Override
 	public Customers getCustomer(int cid) {
 		
 		return customerRepository.findOne(cid);
@@ -41,5 +46,23 @@ public class CustomerServiceImpl implements CustomerService {
 	public void deleteCustomer(int cid) {
 		
 		customerRepository.delete(cid);
-	}	
+	}
+
+	@Override
+	public void updateCustomer(Customers customers) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Cart> getCart(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*@Override
+	public void updateCustomer(Customers customers) {
+		// TODO Auto-generated method stub
+		customerRepository.updateCustomer(customers);
+	}*/	
 }
