@@ -72,7 +72,7 @@ import com.app.services.ProductService;
 			List<Orders> list1 = u.getOrdersForUser(username);
 			model.addAttribute("list1",list1);
 			return "vieworders";
-		}*/
+		}*///
 
 		@RequestMapping("/viewCart/{userName}")
 		public String viewCart(Model model,@PathVariable("userName") String userName) {
